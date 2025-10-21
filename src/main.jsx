@@ -10,7 +10,7 @@ import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader';
 import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
-
+import TrendingThisWeekPage from "./pages/trendingThisWeekPage.jsx"; 
 
 
 const queryClient = new QueryClient({
@@ -36,6 +36,7 @@ const App = () => {
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/movies/trending/this-week" element={<TrendingThisWeekPage />} />
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
