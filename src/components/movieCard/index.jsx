@@ -1,4 +1,4 @@
-import React, { useContext  } from "react";
+import React, { useContext } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
 import { Link } from "react-router";
 import Card from "@mui/material/Card";
@@ -16,7 +16,7 @@ import Grid from "@mui/material/Grid";
 import Avatar from '@mui/material/Avatar';
 import img from '../../images/film-poster-placeholder.png';
 
-export default function MovieCard({ movie, action }) { 
+export default function MovieCard({ movie, action }) {
 
   const { favorites, addToFavorites } = useContext(MoviesContext);
 
@@ -31,6 +31,12 @@ export default function MovieCard({ movie, action }) {
     addToFavorites(movie);
   };
 
+  const date = new Date(movie.release_date)
+  const formatted_release_date = date.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: '2-digit'
+  })
 
   return (
     <Card>
@@ -62,7 +68,7 @@ export default function MovieCard({ movie, action }) {
           <Grid size={{ xs: 6 }}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {movie.release_date}
+              {formatted_release_date}
             </Typography>
           </Grid>
           <Grid size={{ xs: 6 }}>
@@ -74,15 +80,15 @@ export default function MovieCard({ movie, action }) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-      
+
         {action(movie)}
-      
+
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
         </Link>
-        
+
       </CardActions>
 
     </Card>
